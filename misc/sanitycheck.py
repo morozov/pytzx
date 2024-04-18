@@ -3,11 +3,7 @@
 # Performs some non-exhaustive tests on tzx.py
 # All tests succeed if no output is generated.
 #
-import sys
-# Convenience for running from this directory.
-sys.path.append("../modules")
-from tzx import *
-from zxfile import *
+from modules.tzx import *
 
 # Sanity Check
 binary = "\x00" * 10

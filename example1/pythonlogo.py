@@ -15,11 +15,8 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-import sys
-# Convenience for running from this directory.
-sys.path.append("../modules")
-from tzx import *
-from zxfile import *
+from modules.tzx import *
+from modules.zxfile import *
 
 ################################################################################
 # EXAMPLE 1 - Pure python script that generates a TZX file to load a screen.   #
