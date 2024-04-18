@@ -23,10 +23,10 @@ from modules.zxfile import *
 #             screen.                                                          #
 #                                                                              #
 # A revised version of example 1 which loads the spectrum screen through using #
-# a custom sprectrum loading routine. We have three spectrum files, the first  #
-# is the basic program which boot straps the second file, which is the custom  #
-# loading routine. The custom loading routine itself then loads then loads the #
-# actual screen data. As the screen data is headerless, we need *5* TZX blocks #
+# a custom spectrum loading routine. We have three spectrum files, the first   #
+# the basic program which boot straps the second file, which is the custom     #
+# loading routine. The custom loading routine itself then loads the actual     #
+# screen data. As the screen data is headerless, we need *5* TZX blocks        #
 ################################################################################
 
 # Main code starts around line 473
@@ -481,7 +481,6 @@ loaderdata = ZX_FileData(basicprog)
 # Tell the header, the size of the data.
 loaderheader.setdatalen(loaderdata.datalen())
 
-
 # Second File: The spectrum "Turbo Loader"
 # CREATE THE HEADER
 # For an explanation of the parameters, see zxfile.py
@@ -493,15 +492,13 @@ tloaderdata = ZX_FileData(turboprog)
 # Tell the header, the size of the data.
 tloaderheader.setdatalen(tloaderdata.datalen())
 
-
 # Third File: The screen data (this is code ie "Bytes:")
 # THIS FILE IS HEADERLESS SO ONLY CREATE THE DATA
 screendata = ZX_FileData(screenbytes)
 
-
 # Now that we have prepared our spectrum files, they need to be incorporated
 # into TZX blocks. We will be using the "Standard Speed Data Block" for the
-# basic loader and the the turbo loader but the screen data needs to be in a
+# basic loader and the turbo loader but the screen data needs to be in a
 # "Turbo Speed Data Block"
 
 # Incorporate the loader header into a TZX block.
@@ -525,7 +522,6 @@ screenblock.syncpulse2(714)
 screenblock.bitpulse0(573)
 screenblock.bitpulse1(1147)
 
-
 # Now we create a new TZX layout and add the TZX blocks to it in the order that
 # you want them to appear on the tape.
 logotape = TZX()
@@ -534,7 +530,6 @@ logotape.add_block(loaderblock2)
 logotape.add_block(tloaderblock1)
 logotape.add_block(tloaderblock2)
 logotape.add_block(screenblock)
-
 
 # Almost complete, the final stage is to write the TZX to a file.
 tzxfile = open('turbopylogo.tzx', 'wb')

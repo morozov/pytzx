@@ -446,7 +446,6 @@ screenbytes = \
 # 10 LOAD "" CODE
 basicprog = b"\x00\x0A\x05\x00\xEF\x22\x22\xAF\x0D"
 
-
 # Before dealing with the TZX file itself, we can use some spectrum specific
 # classes and methods to create the data that needs to encapsulated into a
 # TZX block and added to a TZX.
@@ -462,7 +461,6 @@ loaderdata = ZX_FileData(basicprog)
 # Tell the header, the size of the data.
 loaderheader.setdatalen(loaderdata.datalen())
 
-
 # Second File: The screen data (this is code ie "Bytes:")
 # CREATE THE HEADER
 # For an explanation of the parameters, see zxfile.py
@@ -473,7 +471,6 @@ screendata = ZX_FileData(screenbytes)
 
 # Tell the header, the size of the data.
 screenheader.setdatalen(screendata.datalen())
-
 
 # Now that we have prepared our spectrum files, they need to be incorporated
 # into TZX blocks. We will be using the "Standard Speed Data Block".
@@ -491,7 +488,6 @@ screenblock1 = Blk_SSDB(data=screenheader.get())
 # Incorporate the screen's data into a TZX block.
 screenblock2 = Blk_SSDB(data=screendata.get())
 
-
 # Now we create a new TZX layout and add the TZX blocks to it in the order that
 # you want them to appear on the tape.
 logotape = TZX()
@@ -499,7 +495,6 @@ logotape.add_block(loaderblock1)
 logotape.add_block(loaderblock2)
 logotape.add_block(screenblock1)
 logotape.add_block(screenblock2)
-
 
 # Almost complete, the final stage is to write the TZX to a file.
 tzxfile = open('pylogo.tzx', 'wb')

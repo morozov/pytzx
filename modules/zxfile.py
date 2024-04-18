@@ -165,6 +165,7 @@ class ZX_FileData:
 
     A class which defines spectrum file data layout.
     """
+
     def __init__(self, data: bytes = None):
         self.__flag = SPEC_FLAG_DATA
         self.__data = bytes()
@@ -196,7 +197,7 @@ class ZX_FileData:
         """
         Returns a complete spectrum file data layout.
         """
-        # Always ensure checksum is up to date before returning data
+        # Always ensure checksum is up-to-date before returning data
         self.__calccksum()
         # Return everything
         return pack('<B', self.__flag) + self.__data + pack('<B', self.__cksum)
@@ -208,4 +209,3 @@ class ZX_FileData:
         self.__cksum = self.__flag
         for byte in self.__data:
             self.__cksum = xor(self.__cksum, byte)
-

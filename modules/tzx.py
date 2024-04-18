@@ -15,83 +15,83 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #
 # VERSION 0.5
-from struct import pack,unpack
+from struct import pack, unpack
 
 # TZX Version
 VER_MAJ = 1
 VER_MIN = 20
 
 # TZX Block Values
-TZXBLK_SSDB   = 0x10 # Standard Speed Data Block
-TZXBLK_TSDB   = 0x11 # Turbo Speed Data Block
-TZXBLK_PTB    = 0x12 # Pure Tone Block
-TZXBLK_PSB    = 0x13 # Pulse Sequence Block
-TZXBLK_PDB    = 0x14 # Pure Data Block
-TZXBLK_DRB    = 0x15 # Direct Recording Block
-TZXBLK_CRTDB  = 0x16 # C64 ROM Type Data Block (Deprecated, Not Implemented)
-TZXBLK_CTTDB  = 0x17 # C64 Turbo Tape Data Block (Deprecated, Not Implemented)
-TZXBLK_CSWRB  = 0x18 # CSW Recording Block !!!!!!!!!!!!!!!!!!!!!
-TZXBLK_GDB    = 0x19 # Generalized Data Block (Not Implemented)
-TZXBLK_PB     = 0x20 # Pause Block
-TZXBLK_GSB    = 0x21 # Group Start Block
-TZXBLK_GEB    = 0x22 # Group End Block
-TZXBLK_JTB    = 0x23 # Jump To Block
-TZXBLK_LSB    = 0x24 # Loop Start Block
-TZXBLK_LEB    = 0x25 # Loop End Block
-TZXBLK_CSB    = 0x26 # Call Sequence Block
-TZXBLK_RFSB   = 0x27 # Return From Sequence Block
-TZXBLK_SELB   = 0x28 # Select Block
-TZXBLK_ST48MB = 0x2A # Stop the Tape if in 48k Mode Block
-TZXBLK_SSLB   = 0x2B # Set Signal Level Block
-TZXBLK_TDB    = 0x30 # Text Description Block
-TZXBLK_MB     = 0x31 # Message Block
-TZXBLK_AIB    = 0x32 # Archive Info Block
-TZXBLK_HTB    = 0x33 # Hardware Type Block
-TZXBLK_EIB    = 0x34 # Emulation Info Block (Deprecated, Not Implemented)
-TZXBLK_CIB    = 0x35 # Custom Information Block
-TZXBLK_SB     = 0x40 # Snapshot Block (Deprecated, Not Implemented)
-TZXBLK_GB     = 0x5A # Glue Block. Indentical to TZX
+TZXBLK_SSDB = 0x10  # Standard Speed Data Block
+TZXBLK_TSDB = 0x11  # Turbo Speed Data Block
+TZXBLK_PTB = 0x12  # Pure Tone Block
+TZXBLK_PSB = 0x13  # Pulse Sequence Block
+TZXBLK_PDB = 0x14  # Pure Data Block
+TZXBLK_DRB = 0x15  # Direct Recording Block
+TZXBLK_CRTDB = 0x16  # C64 ROM Type Data Block (Deprecated, Not Implemented)
+TZXBLK_CTTDB = 0x17  # C64 Turbo Tape Data Block (Deprecated, Not Implemented)
+TZXBLK_CSWRB = 0x18  # CSW Recording Block !!!!!!!!!!!!!!!!!!!!!
+TZXBLK_GDB = 0x19  # Generalized Data Block (Not Implemented)
+TZXBLK_PB = 0x20  # Pause Block
+TZXBLK_GSB = 0x21  # Group Start Block
+TZXBLK_GEB = 0x22  # Group End Block
+TZXBLK_JTB = 0x23  # Jump To Block
+TZXBLK_LSB = 0x24  # Loop Start Block
+TZXBLK_LEB = 0x25  # Loop End Block
+TZXBLK_CSB = 0x26  # Call Sequence Block
+TZXBLK_RFSB = 0x27  # Return From Sequence Block
+TZXBLK_SELB = 0x28  # Select Block
+TZXBLK_ST48MB = 0x2A  # Stop the Tape if in 48k Mode Block
+TZXBLK_SSLB = 0x2B  # Set Signal Level Block
+TZXBLK_TDB = 0x30  # Text Description Block
+TZXBLK_MB = 0x31  # Message Block
+TZXBLK_AIB = 0x32  # Archive Info Block
+TZXBLK_HTB = 0x33  # Hardware Type Block
+TZXBLK_EIB = 0x34  # Emulation Info Block (Deprecated, Not Implemented)
+TZXBLK_CIB = 0x35  # Custom Information Block
+TZXBLK_SB = 0x40  # Snapshot Block (Deprecated, Not Implemented)
+TZXBLK_GB = 0x5A  # Glue Block. Identical to TZX
 
 # Hardware Type Values
-HTYPE_COMPUTER  = 0x00
-HTYPE_XSTORAGE  = 0x01
-HTYPE_ROMRAM    = 0x02
-HTYPE_SOUND     = 0x03
-HTYPE_JOYSTICK  = 0x04
-HTYPE_MOUSE     = 0x05
-HTYPE_OTHER     = 0x06
-HTYPE_SERIAL    = 0x07
-HTYPE_PARALLEL  = 0x08
-HTYPE_PRINTER   = 0x09
-HTYPE_MODEM     = 0x0A
+HTYPE_COMPUTER = 0x00
+HTYPE_XSTORAGE = 0x01
+HTYPE_ROMRAM = 0x02
+HTYPE_SOUND = 0x03
+HTYPE_JOYSTICK = 0x04
+HTYPE_MOUSE = 0x05
+HTYPE_OTHER = 0x06
+HTYPE_SERIAL = 0x07
+HTYPE_PARALLEL = 0x08
+HTYPE_PRINTER = 0x09
+HTYPE_MODEM = 0x0A
 HTYPE_DIGITIZER = 0x0B
-HTYPE_NETWORK   = 0x0C
-HTYPE_KEYBOARD  = 0x0D
-HTYPE_ADDA      = 0x0E
-HTYPE_EPROM     = 0x0F
-HTYPE_GFX       = 0x10
+HTYPE_NETWORK = 0x0C
+HTYPE_KEYBOARD = 0x0D
+HTYPE_ADDA = 0x0E
+HTYPE_EPROM = 0x0F
+HTYPE_GFX = 0x10
 
 # Hardware Info Values
-HINFO_RUNS       = 0
-HINFO_RUNS_SFX   = 1
+HINFO_RUNS = 0
+HINFO_RUNS_SFX = 1
 HINFO_RUNS_NOSFX = 2
-HINFO_NORUN      = 3
+HINFO_NORUN = 3
 
 # Archive Info Values
-AINFO_TITLE      = 0x00
-AINFO_PUBLISHER  = 0x01
-AINFO_AUTHOR     = 0x02
-AINFO_PUBYEAR    = 0x03
-AINFO_LANG       = 0x04
-AINFO_TYPE       = 0x05
-AINFO_PRICE      = 0x06
+AINFO_TITLE = 0x00
+AINFO_PUBLISHER = 0x01
+AINFO_AUTHOR = 0x02
+AINFO_PUBYEAR = 0x03
+AINFO_LANG = 0x04
+AINFO_TYPE = 0x05
+AINFO_PRICE = 0x06
 AINFO_PROTECTION = 0x07
-AINFO_ORIGIN     = 0x08
-AINFO_COMMENT    = 0xFF
+AINFO_ORIGIN = 0x08
+AINFO_COMMENT = 0xFF
 
 # Compression Types for CSW
-CSW_RLE          = 1
-CSW_ZRLE         = 2
+CSW_RLE = 1
+CSW_ZRLE = 2
 
 
 # Header elements are:
@@ -105,6 +105,7 @@ class TZX:
 
     Implements a TZX file layout for emulating computer cassettes.
     """
+
     def __init__(self):
         self.__numblocks = 0
         self.__header = [b'ZXTape!',
@@ -120,7 +121,7 @@ class TZX:
 
         Technically it copies the block which means that after the block has been
         added to the TZX, subsequent alterations to the block will not be reflected
-        in the TZX. This does however mean the block can reused.
+        in the TZX. This does however mean the block can be reused.
         """
         self.__numblocks = self.__numblocks + 1
         self.__blocks.extend(block.get())
@@ -142,7 +143,7 @@ class TZX:
         self.__header[2] = pack('<B', major)
         self.__header[3] = pack('<B', minor)
 
-    def write(self,fh):
+    def write(self, fh):
         """
         Writes the complete TZX to a file.
 
@@ -171,7 +172,7 @@ class Blk_SSDB:
     def __init__(self, plen=1000, data=None):
         self.__header = [bytes() for _ in range(3)]
         self.__header[0] = pack('<B', self.id)
-        self.__header[2] = pack('<H', 0) # We must initialise data length to zero here
+        self.__header[2] = pack('<H', 0)  # We must initialise data length to zero here
         self.__data = bytes()
         self.pause(plen)
         self.encapsulate(data)
@@ -200,7 +201,7 @@ class Blk_SSDB:
         l = 0
         if data is not None:
             l = len(data)
-            if (l > 65535):
+            if l > 65535:
                 return 1
             else:
                 self.__data = data[:]
@@ -240,11 +241,12 @@ class Blk_TSDB:
     """
     id = TZXBLK_TSDB
 
-    def __init__(self, ppulse=2168, spulse1=667, spulse2=735, bpulse0=855, bpulse1=1710, ptone=8063, ubits=8, plen=1000, data=None):
+    def __init__(self, ppulse=2168, spulse1=667, spulse2=735, bpulse0=855, bpulse1=1710, ptone=8063, ubits=8, plen=1000,
+                 data=None):
         self.__header = [bytes() for _ in range(10)]
         self.__header[0] = pack('<B', self.id)
-        self.__header[9] = pack('<L', 0) # We must initialise data length to zero here
-        self.__header[9] = self.__header[9][:3] # Its only 3 bytes, so truncate it
+        self.__header[9] = pack('<L', 0)  # We must initialise data length to zero here
+        self.__header[9] = self.__header[9][:3]  # Its only 3 bytes, so truncate it
         self.__data = bytes()
         self.pilotpulse(ppulse)
         self.syncpulse1(spulse1)
@@ -256,7 +258,7 @@ class Blk_TSDB:
         self.pause(plen)
         self.encapsulate(data)
 
-    def pilotpulse(self,ppulse=None):
+    def pilotpulse(self, ppulse=None):
         """
         Sets and returns the length of PILOT pulse (in T states).
 
@@ -268,7 +270,7 @@ class Blk_TSDB:
             self.__header[1] = pack('<H', ppulse)
         return unpack('<H', self.__header[1])[0]
 
-    def syncpulse1(self,spulse1=None):
+    def syncpulse1(self, spulse1=None):
         """
         Sets and returns the length of the first SYNC pulse (in T states).
 
@@ -280,7 +282,7 @@ class Blk_TSDB:
             self.__header[2] = pack('<H', spulse1)
         return unpack('<H', self.__header[2])[0]
 
-    def syncpulse2(self,spulse2=None):
+    def syncpulse2(self, spulse2=None):
         """
         Sets and returns the length of the second SYNC pulse (in T states).
 
@@ -292,7 +294,7 @@ class Blk_TSDB:
             self.__header[3] = pack('<H', spulse2)
         return unpack('<H', self.__header[3])[0]
 
-    def bitpulse0(self,bpulse0=None):
+    def bitpulse0(self, bpulse0=None):
         """
         Sets and returns the length of a ZERO bit pulse (in T states).
 
@@ -304,7 +306,7 @@ class Blk_TSDB:
             self.__header[4] = pack('<H', bpulse0)
         return unpack('<H', self.__header[4])[0]
 
-    def bitpulse1(self,bpulse1=None):
+    def bitpulse1(self, bpulse1=None):
         """
         Sets and returns the length of a ONE bit pulse (in T states).
 
@@ -316,7 +318,7 @@ class Blk_TSDB:
             self.__header[5] = pack('<H', bpulse1)
         return unpack('<H', self.__header[5])[0]
 
-    def pilottone(self,ptone=None):
+    def pilottone(self, ptone=None):
         """
         Sets and returns the length of a PILOT tone (in pulses).
 
@@ -328,7 +330,7 @@ class Blk_TSDB:
             self.__header[6] = pack('<H', ptone)
         return unpack('<H', self.__header[6])[0]
 
-    def usedbits(self,ubits=None):
+    def usedbits(self, ubits=None):
         """
         Sets and returns the value of the used bits in the last byte.
 
@@ -344,7 +346,7 @@ class Blk_TSDB:
             self.__header[7] = pack('<B', ubits)
         return unpack('<B', self.__header[7])[0]
 
-    def pause(self,plen=None):
+    def pause(self, plen=None):
         """
         Sets and returns the pause length after this block (in milliseconds).
 
@@ -361,7 +363,7 @@ class Blk_TSDB:
         Returns the length in bytes of the currently encapsulated data.
         """
         # 3 byte value, so add empty byte and decode as long
-        return unpack('<L',self.__header[9] + b"\x00")[0]
+        return unpack('<L', self.__header[9] + b"\x00")[0]
 
     def encapsulate(self, data):
         """
@@ -374,8 +376,8 @@ class Blk_TSDB:
         """
         l = 0
         if data is not None:
-            l=len(data)
-            if (l > 16777215):
+            l = len(data)
+            if l > 16777215:
                 return 1
             else:
                 self.__data = data[:]
@@ -410,8 +412,8 @@ class Blk_PDB:
     def __init__(self, bpulse0=855, bpulse1=1710, ubits=8, plen=1000, data=None):
         self.__header = [bytes() for _ in range(6)]
         self.__header[0] = pack('<B', self.id)
-        self.__header[5] = pack('<L', 0) # We must initialise data length to zero here
-        self.__header[5] = self.__header[5][:3] # Its only 3 bytes, so truncate it
+        self.__header[5] = pack('<L', 0)  # We must initialise data length to zero here
+        self.__header[5] = self.__header[5][:3]  # Its only 3 bytes, so truncate it
         self.__data = []
         self.bitpulse0(bpulse0)
         self.bitpulse1(bpulse1)
@@ -419,7 +421,7 @@ class Blk_PDB:
         self.pause(plen)
         self.encapsulate(data)
 
-    def bitpulse0(self,bpulse0=None):
+    def bitpulse0(self, bpulse0=None):
         """
         Sets and returns the length of a ZERO bit pulse (in T states).
 
@@ -431,7 +433,7 @@ class Blk_PDB:
             self.__header[1] = pack('<H', bpulse0)
         return unpack('<H', self.__header[1])[0]
 
-    def bitpulse1(self,bpulse1=None):
+    def bitpulse1(self, bpulse1=None):
         """
         Sets and returns the length of a ONE bit pulse (in T states).
 
@@ -443,7 +445,7 @@ class Blk_PDB:
             self.__header[2] = pack('<H', bpulse1)
         return unpack('<H', self.__header[2])[0]
 
-    def usedbits(self,ubits=None):
+    def usedbits(self, ubits=None):
         """
         Sets and returns the value of the used bits in the last byte.
 
@@ -459,7 +461,7 @@ class Blk_PDB:
             self.__header[3] = pack('<B', ubits)
         return unpack('<B', self.__header[3])[0]
 
-    def pause(self,plen=None):
+    def pause(self, plen=None):
         """
         Sets and returns the pause length after this block (in milliseconds).
 
@@ -476,7 +478,7 @@ class Blk_PDB:
         Returns the length in bytes of the currently encapsulated data.
         """
         # 3 byte value, so add empty byte and decode as long
-        return unpack('<L',self.__header[5] + b"\x00")[0]
+        return unpack('<L', self.__header[5] + b"\x00")[0]
 
     def encapsulate(self, data):
         """
@@ -489,8 +491,8 @@ class Blk_PDB:
         """
         l = 0
         if data is not None:
-            l=len(data)
-            if (l > 16777215):
+            l = len(data)
+            if l > 16777215:
                 return 1
             else:
                 self.__data = data[:]
@@ -523,17 +525,17 @@ class Blk_DRB:
     id = TZXBLK_DRB
 
     def __init__(self, tspsample=0, plen=1000, ubits=8, sampledata=None):
-        self.__header=[bytes() for _ in range(5)]
+        self.__header = [bytes() for _ in range(5)]
         self.__header[0] = pack('<B', self.id)
-        self.__header[4] = pack('<L', 0) # We must initialise data length to zero here
-        self.__header[4] = self.__header[4][:3] # Its only 3 bytes, so truncate it
+        self.__header[4] = pack('<L', 0)  # We must initialise data length to zero here
+        self.__header[4] = self.__header[4][:3]  # Its only 3 bytes, so truncate it
         self.__sampledata = bytes()
         self.tstatespersample(tspsample)
         self.pause(plen)
         self.usedbits(ubits)
         self.encapsulate(sampledata)
 
-    def tstatespersample(self,tspsample=None):
+    def tstatespersample(self, tspsample=None):
         """
         Sets and returns the number of T states per sample (bit of data)
 
@@ -545,8 +547,7 @@ class Blk_DRB:
             self.__header[1] = pack('<H', tspsample)
         return unpack('<H', self.__header[1])[0]
 
-
-    def pause(self,plen=None):
+    def pause(self, plen=None):
         """
         Sets and returns the pause length after this block (in milliseconds).
 
@@ -558,7 +559,7 @@ class Blk_DRB:
             self.__header[2] = pack('<H', plen)
         return unpack('<H', self.__header[2])[0]
 
-    def usedbits(self,ubits=None):
+    def usedbits(self, ubits=None):
         """
         Sets and returns the value of the used bits in the last byte.
 
@@ -579,7 +580,7 @@ class Blk_DRB:
         Returns the length in bytes of the currently encapsulated sample data.
         """
         # 3 byte value, so add empty byte and decode as long
-        return unpack('<L',self.__header[4] + b"\x00")[0]
+        return unpack('<L', self.__header[4] + b"\x00")[0]
 
     def encapsulate(self, sampledata):
         """
@@ -595,8 +596,8 @@ class Blk_DRB:
         """
         l = 0
         if sampledata is not None:
-            l=len(sampledata)
-            if (l > 16777215):
+            l = len(sampledata)
+            if l > 16777215:
                 return 1
             else:
                 self.__sampledata = sampledata[:]
@@ -630,7 +631,7 @@ class Blk_CSWRB:
     id = TZXBLK_CSWRB
 
     def __init__(self, plen=1000, srate=22050, ctype=CSW_RLE, spulses=0, sampledata=None):
-        self.__header=[bytes() for _ in range(6)]
+        self.__header = [bytes() for _ in range(6)]
         self.__header[0] = pack('<B', self.id)
         self.__header[1] = pack('<L', 10)
         self.__sampledata = []
@@ -640,7 +641,7 @@ class Blk_CSWRB:
         self.storedpulses(spulses)
         self.encapsulate(sampledata)
 
-    def pause(self,plen=None):
+    def pause(self, plen=None):
         """
         Sets and returns the pause length after this block (in milliseconds).
 
@@ -652,7 +653,7 @@ class Blk_CSWRB:
             self.__header[2] = pack('<H', plen)
         return unpack('<H', self.__header[2])[0]
 
-    def samplerate(self,srate=None):
+    def samplerate(self, srate=None):
         """
         Sets and returns sample rate value.
 
@@ -698,7 +699,7 @@ class Blk_CSWRB:
         Returns the length in bytes of the currently encapsulated sample data.
         """
         # -10 to account for other block fields.
-        return (unpack('<L',self.__header[1])[0] - 10)
+        return unpack('<L', self.__header[1])[0] - 10
 
     def encapsulate(self, sampledata):
         """
@@ -708,11 +709,10 @@ class Blk_CSWRB:
         """
         l = 0
         if sampledata is not None:
-            l=len(sampledata)
+            l = len(sampledata)
             self.__sampledata = sampledata[:]
         # + 10 to account for other block fields.
-        self.__header[1] = pack('<L', (l+10))
-
+        self.__header[1] = pack('<L', (l + 10))
 
     def get(self):
         """
@@ -721,6 +721,7 @@ class Blk_CSWRB:
         cswrblock = self.__header[:]
         cswrblock.extend(self.__sampledata)
         return cswrblock
+
 
 # Header elements are:
 # 0 - Block ID (8b)
@@ -785,7 +786,7 @@ class Blk_PSB:
     def __init__(self):
         self.__pulses = []
         self.__header = [pack('<B', self.id),
-                         pack('<B', len(self.__pulses))] # We must initialise this here
+                         pack('<B', len(self.__pulses))]  # We must initialise this here
 
     def add_pulse(self, plen):
         """
@@ -798,7 +799,7 @@ class Blk_PSB:
         been reached and the pulse will not be added. 'None' will be returned on
         success.
         """
-        if (len(self.__pulses) == 255):
+        if len(self.__pulses) == 255:
             return 1
         else:
             self.__pulses.append(pack('<H', plen))
@@ -835,7 +836,7 @@ class Blk_CSB:
     def __init__(self):
         self.__calls = []
         self.__header = [pack('<B', self.id),
-                         pack('<B', len(self.__calls))] # We must initialise this here
+                         pack('<B', len(self.__calls))]  # We must initialise this here
 
     def add_call(self, call):
         """
@@ -849,7 +850,7 @@ class Blk_CSB:
         been reached and the call will not be added. 'None' will be returned on
         success.
         """
-        if (len(self.__calls) == 255):
+        if len(self.__calls) == 255:
             return 1
         else:
             self.__calls.append(pack('<h', call))
@@ -869,6 +870,7 @@ class Blk_CSB:
         csblock.extend(self.__calls)
         return csblock
 
+
 # Header elements are
 # 0 - Block ID (8b)
 class Blk_RFSB:
@@ -881,7 +883,7 @@ class Blk_RFSB:
     id = TZXBLK_RFSB
 
     def __init__(self):
-       self.__header = [pack('<B', self.id)]
+        self.__header = [pack('<B', self.id)]
 
     def get(self):
         """
@@ -902,12 +904,12 @@ class Blk_PB:
     """
     id = TZXBLK_PB
 
-    def __init__(self,duration=0):
+    def __init__(self, duration=0):
         self.__header = [bytes() for _ in range(2)]
         self.__header[0] = pack('<B', self.id)
         self.duration(duration)
 
-    def duration(self,duration=None):
+    def duration(self, duration=None):
         """
         Sets and returns the duration (in milliseconds) of silence.
 
@@ -917,7 +919,7 @@ class Blk_PB:
         If 'duration' is 'None' the current value is returned and no change is made.
         """
         if duration is not None:
-            self.__header[1] = pack('<H',duration)
+            self.__header[1] = pack('<H', duration)
         return unpack('<H', self.__header[1])[0]
 
     def get(self):
@@ -945,7 +947,7 @@ class Blk_GSB:
         self.__header[0] = pack('<B', self.id)
         self.groupname(gname)
 
-    def groupname(self,gname=None):
+    def groupname(self, gname=None):
         """
         Sets and returns the group name.
 
@@ -1076,7 +1078,7 @@ class Blk_LEB:
     id = TZXBLK_LEB
 
     def __init__(self):
-       self.__header = [pack('<B', self.id)]
+        self.__header = [pack('<B', self.id)]
 
     def get(self):
         """
@@ -1098,8 +1100,8 @@ class Blk_ST48MB:
     id = TZXBLK_ST48MB
 
     def __init__(self):
-       self.__header = [pack('<B', self.id),
-                        pack('<L', 0)] # Always 0
+        self.__header = [pack('<B', self.id),
+                         pack('<L', 0)]  # Always 0
 
     def get(self):
         """
@@ -1125,7 +1127,7 @@ class Blk_TDB:
         self.__header[0] = pack('<B', self.id)
         self.description(description)
 
-    def description(self,description=None):
+    def description(self, description=None):
         """
         Sets and returns the description.
 
@@ -1146,6 +1148,7 @@ class Blk_TDB:
         """
         return self.__header[:]
 
+
 # Header values are
 # 0 - Block ID (8b)
 # 1 - Time in secs for msg to be shown (8b)
@@ -1164,7 +1167,6 @@ class Blk_MB:
         self.__header[0] = pack('<B', self.id)
         self.time(t)
         self.message(msg)
-
 
     def message(self, msg=None):
         """
@@ -1254,7 +1256,7 @@ class Blk_HTB:
     def __init__(self):
         self.__hardware = []
         self.__header = [pack('<B', self.id),
-                         pack('<B', len(self.__hardware))] # We must initialise this here
+                         pack('<B', len(self.__hardware))]  # We must initialise this here
 
     def add_hardware(self, htype, hid, hinfo):
         """
@@ -1279,7 +1281,7 @@ class Blk_HTB:
         has already been reached and the entry will not be added. 'None' will be
         returned on success.
         """
-        if (len(self.__hardware) == 255):
+        if len(self.__hardware) == 255:
             return 1
         else:
             self.__hardware.append(pack('<BBB', htype, hid, hinfo))
@@ -1304,7 +1306,7 @@ class Blk_HTB:
 # 0 - Block ID (8b)
 # 1 - Length of block excluding ID and these bytes (16b)
 # 2 - Number of text strings
-class Blk_AIB():
+class Blk_AIB:
     """
     Archive Info Block.
 
@@ -1318,7 +1320,7 @@ class Blk_AIB():
         self.__info = []
         self.__header = [pack('<B', self.id),
                          pack('<H', 1),
-                         pack('<B', len(self.__info))] # We must initialise this here
+                         pack('<B', len(self.__info))]  # We must initialise this here
 
     def add_info(self, textid, info):
         """
@@ -1334,7 +1336,7 @@ class Blk_AIB():
         has already been reached and the entry will not be added. 'None' will be
         returned on success.
         """
-        if (len(self.__info) == 255):
+        if len(self.__info) == 255:
             return 1
         else:
             info = info[:255]
@@ -1372,9 +1374,9 @@ class Blk_CIB:
     id = TZXBLK_CIB
 
     def __init__(self, cid="No ID", data=None):
-        self.__header=[bytes() for _ in range(3)]
+        self.__header = [bytes() for _ in range(3)]
         self.__header[0] = pack('<B', self.id)
-        self.__header[2] = pack('<H', 0) # We must initialise this here
+        self.__header[2] = pack('<H', 0)  # We must initialise this here
         self.__data = []
         self.setcid(cid)
         self.encapsulate(data)
@@ -1399,7 +1401,7 @@ class Blk_CIB:
         """
         Returns the length in bytes of the currently encapsulated data.
         """
-        return unpack('<H',self.__header[2])[0]
+        return unpack('<H', self.__header[2])[0]
 
     def encapsulate(self, data):
         """
@@ -1412,8 +1414,8 @@ class Blk_CIB:
         """
         l = 0
         if data is not None:
-            l=len(data)
-            if (l > 65535):
+            l = len(data)
+            if l > 65535:
                 return 1
             else:
                 self.__data = data[:]
@@ -1447,7 +1449,7 @@ class Blk_SELB:
         self.__selections = []
         self.__header = [pack('<B', self.id),
                          pack('<H', 0),
-                         pack('<B', len(self.__selections))] # We must initialise this here
+                         pack('<B', len(self.__selections))]  # We must initialise this here
 
     def add_select(self, offset, desc):
         """
@@ -1464,7 +1466,7 @@ class Blk_SELB:
         has already been reached and the entry will not be added. 'None' will be
         returned on success.
         """
-        if (len(self.__selections) == 255):
+        if len(self.__selections) == 255:
             return 1
         else:
             desc = desc[:30]
@@ -1487,4 +1489,3 @@ class Blk_SELB:
         selblock = self.__header[:]
         selblock.extend(self.__selections)
         return selblock
-
