@@ -104,7 +104,7 @@ class ZX_FileHdr:
         Sets and returns the first file parameter.
 
         The exact meaning of the first file parameter depends upon the file's type.
-        Quoting from http://www.worldofspectrum.org/faq/reference/48kreference.htm:
+        Quoting from https://worldofspectrum.org/faq/reference/48kreference.htm:
 
         "If the file is a PROGRAM file, parameter 1 holds the autostart line number (or
         a number >=32768 if no LINE parameter was given) and parameter 2 holds the
@@ -123,7 +123,7 @@ class ZX_FileHdr:
         Sets and returns the second file parameter.
 
         The exact meaning of the second file parameter depends upon the file's type.
-        Quoting from http://www.worldofspectrum.org/faq/reference/48kreference.htm:
+        Quoting from https://worldofspectrum.org/faq/reference/48kreference.htm:
 
         "If the file is a PROGRAM file, parameter 1 holds the autostart line number (or
         a number >=32768 if no LINE parameter was given) and parameter 2 holds the
