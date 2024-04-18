@@ -107,7 +107,7 @@ class TZX:
     """
     def __init__(self):
         self.__numblocks = 0
-        self.__header = ['ZXTape!',
+        self.__header = [b'ZXTape!',
                          pack('<B', 0x1A),
                          pack('<B', VER_MAJ),
                          pack('<B', VER_MIN)]
@@ -169,10 +169,10 @@ class Blk_SSDB:
     id = TZXBLK_SSDB
 
     def __init__(self, plen=1000, data=None):
-        self.__header = range(3)
+        self.__header = [bytes() for _ in range(3)]
         self.__header[0] = pack('<B', self.id)
         self.__header[2] = pack('<H', 0) # We must initialise data length to zero here
-        self.__data = []
+        self.__data = bytes()
         self.pause(plen)
         self.encapsulate(data)
 
@@ -199,7 +199,7 @@ class Blk_SSDB:
         """
         l = 0
         if data is not None:
-            l = byteslen(data)
+            l = len(data)
             if (l > 65535):
                 return 1
             else:
@@ -217,7 +217,7 @@ class Blk_SSDB:
         Returns a complete Standard Speed Data Block.
         """
         ssdblock = self.__header[:]
-        ssdblock.extend(self.__data)
+        ssdblock.append(self.__data)
         return ssdblock
 
 
@@ -241,11 +241,11 @@ class Blk_TSDB:
     id = TZXBLK_TSDB
 
     def __init__(self, ppulse=2168, spulse1=667, spulse2=735, bpulse0=855, bpulse1=1710, ptone=8063, ubits=8, plen=1000, data=None):
-        self.__header = range(10)
+        self.__header = [bytes() for _ in range(10)]
         self.__header[0] = pack('<B', self.id)
         self.__header[9] = pack('<L', 0) # We must initialise data length to zero here
         self.__header[9] = self.__header[9][:3] # Its only 3 bytes, so truncate it
-        self.__data = []
+        self.__data = bytes()
         self.pilotpulse(ppulse)
         self.syncpulse1(spulse1)
         self.syncpulse2(spulse2)
@@ -361,7 +361,7 @@ class Blk_TSDB:
         Returns the length in bytes of the currently encapsulated data.
         """
         # 3 byte value, so add empty byte and decode as long
-        return unpack('<L',self.__header[9] + "\x00")[0]
+        return unpack('<L',self.__header[9] + b"\x00")[0]
 
     def encapsulate(self, data):
         """
@@ -374,7 +374,7 @@ class Blk_TSDB:
         """
         l = 0
         if data is not None:
-            l=byteslen(data)
+            l=len(data)
             if (l > 16777215):
                 return 1
             else:
@@ -388,7 +388,7 @@ class Blk_TSDB:
         Returns a complete Turbo Speed Data Block.
         """
         tsdblock = self.__header[:]
-        tsdblock.extend(self.__data)
+        tsdblock.append(self.__data)
         return tsdblock
 
 
@@ -408,7 +408,7 @@ class Blk_PDB:
     id = TZXBLK_PDB
 
     def __init__(self, bpulse0=855, bpulse1=1710, ubits=8, plen=1000, data=None):
-        self.__header = range(6)
+        self.__header = [bytes() for _ in range(6)]
         self.__header[0] = pack('<B', self.id)
         self.__header[5] = pack('<L', 0) # We must initialise data length to zero here
         self.__header[5] = self.__header[5][:3] # Its only 3 bytes, so truncate it
@@ -476,7 +476,7 @@ class Blk_PDB:
         Returns the length in bytes of the currently encapsulated data.
         """
         # 3 byte value, so add empty byte and decode as long
-        return unpack('<L',self.__header[5] + "\x00")[0]
+        return unpack('<L',self.__header[5] + b"\x00")[0]
 
     def encapsulate(self, data):
         """
@@ -489,7 +489,7 @@ class Blk_PDB:
         """
         l = 0
         if data is not None:
-            l=byteslen(data)
+            l=len(data)
             if (l > 16777215):
                 return 1
             else:
@@ -523,11 +523,11 @@ class Blk_DRB:
     id = TZXBLK_DRB
 
     def __init__(self, tspsample=0, plen=1000, ubits=8, sampledata=None):
-        self.__header=range(5)
+        self.__header=[bytes() for _ in range(5)]
         self.__header[0] = pack('<B', self.id)
         self.__header[4] = pack('<L', 0) # We must initialise data length to zero here
         self.__header[4] = self.__header[4][:3] # Its only 3 bytes, so truncate it
-        self.__sampledata = []
+        self.__sampledata = bytes()
         self.tstatespersample(tspsample)
         self.pause(plen)
         self.usedbits(ubits)
@@ -579,7 +579,7 @@ class Blk_DRB:
         Returns the length in bytes of the currently encapsulated sample data.
         """
         # 3 byte value, so add empty byte and decode as long
-        return unpack('<L',self.__header[4] + "\x00")[0]
+        return unpack('<L',self.__header[4] + b"\x00")[0]
 
     def encapsulate(self, sampledata):
         """
@@ -595,7 +595,7 @@ class Blk_DRB:
         """
         l = 0
         if sampledata is not None:
-            l=byteslen(sampledata)
+            l=len(sampledata)
             if (l > 16777215):
                 return 1
             else:
@@ -630,7 +630,7 @@ class Blk_CSWRB:
     id = TZXBLK_CSWRB
 
     def __init__(self, plen=1000, srate=22050, ctype=CSW_RLE, spulses=0, sampledata=None):
-        self.__header=range(6)
+        self.__header=[bytes() for _ in range(6)]
         self.__header[0] = pack('<B', self.id)
         self.__header[1] = pack('<L', 10)
         self.__sampledata = []
@@ -665,7 +665,7 @@ class Blk_CSWRB:
             self.__header[3] = pack('<L', srate)
             self.__header[3] = self.__header[3][:3]
         # 3 byte value, so add empty byte and decode as long
-        return unpack('<L', self.__header[3] + "\x00")[0]
+        return unpack('<L', self.__header[3] + b"\x00")[0]
 
     def compression(self, ctype=None):
         """
@@ -708,7 +708,7 @@ class Blk_CSWRB:
         """
         l = 0
         if sampledata is not None:
-            l=byteslen(sampledata)
+            l=len(sampledata)
             self.__sampledata = sampledata[:]
         # + 10 to account for other block fields.
         self.__header[1] = pack('<L', (l+10))
@@ -735,7 +735,7 @@ class Blk_PTB:
     id = TZXBLK_PTB
 
     def __init__(self, plen=0, pnum=0):
-        self.__header = range(3)
+        self.__header = [bytes() for _ in range(3)]
         self.__header[0] = pack('<B', self.id)
         self.pulselen(plen)
         self.pulsenum(pnum)
@@ -903,7 +903,7 @@ class Blk_PB:
     id = TZXBLK_PB
 
     def __init__(self,duration=0):
-        self.__header = range(2)
+        self.__header = [bytes() for _ in range(2)]
         self.__header[0] = pack('<B', self.id)
         self.duration(duration)
 
@@ -941,7 +941,7 @@ class Blk_GSB:
     id = TZXBLK_GSB
 
     def __init__(self, gname="Empty Group Name"):
-        self.__header = range(3)
+        self.__header = [bytes() for _ in range(3)]
         self.__header[0] = pack('<B', self.id)
         self.groupname(gname)
 
@@ -1000,7 +1000,7 @@ class Blk_JTB:
     id = TZXBLK_JTB
 
     def __init__(self, jump=1):
-        self.__header = range(2)
+        self.__header = [bytes() for _ in range(2)]
         self.__header[0] = pack('<B', self.id)
         self.jump(jump)
 
@@ -1039,7 +1039,7 @@ class Blk_LSB:
     id = TZXBLK_LSB
 
     def __init__(self, repetitions=2):
-        self.__header = range(2)
+        self.__header = [bytes() for _ in range(2)]
         self.__header[0] = pack('<B', self.id)
         self.repetitions(repetitions)
 
@@ -1121,7 +1121,7 @@ class Blk_TDB:
     id = TZXBLK_TDB
 
     def __init__(self, description="Empty Description"):
-        self.__header = range(3)
+        self.__header = [bytes() for _ in range(3)]
         self.__header[0] = pack('<B', self.id)
         self.description(description)
 
@@ -1160,7 +1160,7 @@ class Blk_MB:
     id = TZXBLK_MB
 
     def __init__(self, msg="Empty Message", t=0):
-        self.__header = range(4)
+        self.__header = [bytes() for _ in range(4)]
         self.__header[0] = pack('<B', self.id)
         self.time(t)
         self.message(msg)
@@ -1216,7 +1216,7 @@ class Blk_SSLB:
     id = TZXBLK_SSLB
 
     def __init__(self, signal=0):
-        self.__header = range(3)
+        self.__header = [bytes() for _ in range(3)]
         self.__header[0] = pack('<B', self.id)
         self.__header[1] = pack('<L', 1)
         self.signal(signal)
@@ -1339,7 +1339,7 @@ class Blk_AIB():
         else:
             info = info[:255]
             # Ensure these values are in a single element for correct counting of info entries
-            self.__info.append(pack('<BB', textid, len(info)) + info)
+            self.__info.append(pack('<BB', textid, len(info)) + info.encode())
             # Calculate complete length of block
             self.__header[1] = pack('<H', (unpack('<H', self.__header[1])[0] + len(info) + 2))
             self.__header[2] = pack('<B', len(self.__info))
@@ -1372,7 +1372,7 @@ class Blk_CIB:
     id = TZXBLK_CIB
 
     def __init__(self, cid="No ID", data=None):
-        self.__header=range(3)
+        self.__header=[bytes() for _ in range(3)]
         self.__header[0] = pack('<B', self.id)
         self.__header[2] = pack('<H', 0) # We must initialise this here
         self.__data = []
@@ -1412,7 +1412,7 @@ class Blk_CIB:
         """
         l = 0
         if data is not None:
-            l=byteslen(data)
+            l=len(data)
             if (l > 65535):
                 return 1
             else:
@@ -1469,7 +1469,7 @@ class Blk_SELB:
         else:
             desc = desc[:30]
             # Ensure these values are in a single element for correct counting of info entries
-            self.__selections.append(pack('<hB', offset, len(desc)) + desc)
+            self.__selections.append(pack('<hB', offset, len(desc)) + desc.encode())
             # Calculate complete length of block
             self.__header[1] = pack('<H', (unpack('<H', self.__header[1])[0] + len(desc) + 3))
             self.__header[2] = pack('<B', len(self.__selections))
@@ -1488,9 +1488,3 @@ class Blk_SELB:
         selblock.extend(self.__selections)
         return selblock
 
-
-def byteslen(structure=None):
-    length = 0
-    for element in structure:
-        length = length + len(element)
-    return length

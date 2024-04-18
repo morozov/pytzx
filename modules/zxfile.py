@@ -42,7 +42,7 @@ class ZX_FileHdr:
     A class which defines the layout of a spectrum file header.
     """
     def __init__(self, ftype=SPEC_FILE_PROG, fname='EMPTY NAME', dblen=0, par1=0, par2=0):
-        self.__header = range(5)
+        self.__header = [bytes() for _ in range(5)]
         self.__flag = SPEC_FLAG_HEAD
         self.__cksum = 0
         self.filetype(ftype)
@@ -96,7 +96,7 @@ class ZX_FileHdr:
             # Filenames are ALWAYS 10 chars, space padded if necessary so ensure it
             fname = fname.ljust(10)
             fname = fname[:10]
-            self.__header[1] = fname
+            self.__header[1] = fname.encode()
         return self.__header[1]
 
     def param1(self, par1=None):
@@ -144,10 +144,9 @@ class ZX_FileHdr:
         # Always ensure checksum is up to date before returning data
         self.__calccksum()
         # Return everything as a list
-        zxfilehdr = [pack('<B', self.__flag)]
-        zxfilehdr.extend(self.__header)
-        zxfilehdr.extend([pack('<B', self.__cksum)])
-        return zxfilehdr
+        return pack('<B', self.__flag) \
+            + b''.join(self.__header) \
+            + pack('<B', self.__cksum)
 
     # Calculate the XOR checksum (each individual byte has to be XORed)
     # Caution: Unlike spectrum file data, the flag *IS NOT* part of the checksum
@@ -155,7 +154,7 @@ class ZX_FileHdr:
         self.__cksum = 0
         for element in self.__header:
             for byte in element:
-                self.__cksum = xor(self.__cksum, ord(byte))
+                self.__cksum = xor(self.__cksum, byte)
 
 
 class ZX_FileData:
@@ -166,7 +165,7 @@ class ZX_FileData:
     """
     def __init__(self, data=None):
         self.__flag = SPEC_FLAG_DATA
-        self.__data = []
+        self.__data = bytes()
         self.__cksum = 0
         if data is not None:
             self.encapsulate(data)
@@ -180,7 +179,7 @@ class ZX_FileData:
         of 'None' means success. This method replaces any data that has previously been
         encapsulated.
         """
-        if (byteslen(data) > 65535):
+        if len(data) > 65535:
             return 1
         else:
             self.__data = data[:]
@@ -189,10 +188,7 @@ class ZX_FileData:
         """
         Returns the size of the encapsulated data in bytes.
         """
-        length = 0
-        for element in self.__data:
-            length = length + len(element)
-        return length
+        return len(self.__data)
 
     def get(self):
         """
@@ -200,24 +196,14 @@ class ZX_FileData:
         """
         # Always ensure checksum is up to date before returning data
         self.__calccksum()
-        # Return everything as a list
-        zxfiledata = [pack('<B', self.__flag)]
-        zxfiledata.extend(self.__data)
-        zxfiledata.extend([pack('<B', self.__cksum)])
-        return zxfiledata
+        # Return everything
+        return pack('<B', self.__flag) + self.__data + pack('<B', self.__cksum)
 
     # Calculate the XOR checksum (each individual byte has to be XORed)
     # Caution: Unlike a spectrum file header, the flag *IS* part of the checksum
     def __calccksum(self):
         # Calculate the XOR checksum (each individual byte has to be XORed)
         self.__cksum = self.__flag
-        for element in self.__data:
-            for byte in element:
-                self.__cksum = xor(self.__cksum, ord(byte))
+        for byte in self.__data:
+            self.__cksum = xor(self.__cksum, byte)
 
-
-def byteslen(structure=None):
-    length = 0
-    for element in structure:
-        length = length + len(element)
-    return length

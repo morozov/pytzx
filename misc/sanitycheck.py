@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 #
 # Performs some non-exhaustive tests on tzx.py
 # All tests succeed if no output is generated.
@@ -23,13 +23,13 @@ leb2 = Blk_LEB()
 leb3 = Blk_LEB()
 
 if (leb1.id != TZXBLK_LEB):
-    print "Sanity Failure: Loop End Block 1"
+    print("Sanity Failure: Loop End Block 1")
 
 if (leb2.id != TZXBLK_LEB):
-    print "Sanity Failure: Loop End Block 2"
+    print("Sanity Failure: Loop End Block 2")
 
 if (leb3.id != TZXBLK_LEB):
-    print "Sanity Failure: Loop End Block 3"
+    print("Sanity Failure: Loop End Block 3")
 
 
 ##########################
@@ -41,13 +41,13 @@ lsb2.repetitions(10)
 lsb3 = Blk_LSB(5)
 
 if (lsb1.repetitions() != 2):
-    print "Sanity Failure: Loop Start Block 1"
+    print("Sanity Failure: Loop Start Block 1")
 
 if (lsb2.repetitions() != 10):
-    print "Sanity Failure: Loop Start Block 2"
+    print("Sanity Failure: Loop Start Block 2")
 
 if (lsb3.repetitions() != 5):
-    print "Sanity Failure: Loop Start Block 3"
+    print("Sanity Failure: Loop Start Block 3")
 
 
 #######################
@@ -59,13 +59,13 @@ jtb3 = Blk_JTB(5)
 jtb2.jump(10)
 
 if (jtb1.jump() != 1):
-    print "Sanity Failure: Jump To Block 1"
+    print("Sanity Failure: Jump To Block 1")
 
 if (jtb2.jump() != 10):
-    print "Sanity Failure: Jump To Block 2"
+    print("Sanity Failure: Jump To Block 2")
 
 if (jtb3.jump() != 5):
-    print "Sanity Failure: Jump To Block 3"
+    print("Sanity Failure: Jump To Block 3")
 
 
 #########################
@@ -76,13 +76,13 @@ geb2 = Blk_GEB()
 geb3 = Blk_GEB()
 
 if (geb1.id != TZXBLK_GEB):
-    print "Sanity Failure: Group End Block 1"
+    print("Sanity Failure: Group End Block 1")
 
 if (geb2.id != TZXBLK_GEB):
-    print "Sanity Failure: Group End Block 2"
+    print("Sanity Failure: Group End Block 2")
 
 if (geb3.id != TZXBLK_GEB):
-    print "Sanity Failure: Group End Block 3"
+    print("Sanity Failure: Group End Block 3")
 
 
 #####################
@@ -94,13 +94,13 @@ pb3 = Blk_PB(5)
 pb2.duration(10)
 
 if (pb1.duration() != 0):
-    print "Sanity Failure: Pause Block 1"
+    print("Sanity Failure: Pause Block 1")
 
 if (pb2.duration() != 10):
-    print "Sanity Failure: Pause Block 2"
+    print("Sanity Failure: Pause Block 2")
 
 if (pb3.duration() != 5):
-    print "Sanity Failure: Pause Block 3"
+    print("Sanity Failure: Pause Block 3")
 
 
 ##############################
@@ -123,19 +123,19 @@ for q in range(255):
     psb4.add_pulse(400)
 
 if (psb1.pulsenum() != 0):
-    print "Sanity Failure: Pulse Sequence Block 1"
+    print("Sanity Failure: Pulse Sequence Block 1")
 
 if (psb2.pulsenum() != 1):
-    print "Sanity Failure: Pulse Sequence Block 2"
+    print("Sanity Failure: Pulse Sequence Block 2")
 
 if (psb3.pulsenum() != 2):
-    print "Sanity Failure: Pulse Sequence Block 3"
+    print("Sanity Failure: Pulse Sequence Block 3")
 
 if (psb4.add_pulse(400) != 1):
-    print "Sanity Failure: Pulse Sequence Block 4 on Error Check"
+    print("Sanity Failure: Pulse Sequence Block 4 on Error Check")
 
 if (psb4.pulsenum() != 255):
-    print "Sanity Failure: Pulse Sequence Block 4"
+    print("Sanity Failure: Pulse Sequence Block 4")
 
 
 #########################
@@ -149,22 +149,22 @@ ptb3.pulselen(1000)
 ptb3.pulsenum(5000)
 
 if (ptb1.pulselen() != 0):
-    print "Sanity Failure: Pure Tone Block 1, Test 1"
+    print("Sanity Failure: Pure Tone Block 1, Test 1")
 
 if (ptb1.pulsenum() != 0):
-    print "Sanity Failure: Pure Tone Block 1, Test 2"
+    print("Sanity Failure: Pure Tone Block 1, Test 2")
 
 if (ptb2.pulselen() != 100):
-    print "Sanity Failure: Pure Tone Block 2, Test 1"
+    print("Sanity Failure: Pure Tone Block 2, Test 1")
 
 if (ptb2.pulsenum() != 500):
-    print "Sanity Failure: Pure Tone Block 2, Test 2"
+    print("Sanity Failure: Pure Tone Block 2, Test 2")
 
 if (ptb3.pulselen() != 1000):
-    print "Sanity Failure: Pure Tone Block 3, Test 1"
+    print("Sanity Failure: Pure Tone Block 3, Test 1")
 
 if (ptb3.pulsenum() != 5000):
-    print "Sanity Failure: Pure Tone Block 3, Test 2"
+    print("Sanity Failure: Pure Tone Block 3, Test 2")
 
 
 ###################################
@@ -179,34 +179,34 @@ ssdb4 = Blk_SSDB(data=binary)
 ssdb5 = Blk_SSDB(data=binary3)
 
 if (ssdb1.pause() != 1000):
-    print "Sanity Failure: Standard Speed Data Block 1, Test 1"
+    print("Sanity Failure: Standard Speed Data Block 1, Test 1")
 
 if (ssdb1.datalen() != 0):
-    print "Sanity Failure: Standard Speed Data Block 1, Test 2"
+    print("Sanity Failure: Standard Speed Data Block 1, Test 2")
 
 if (ssdb2.pause() != 5000):
-    print "Sanity Failure: Standard Speed Data Block 2, Test 1"
+    print("Sanity Failure: Standard Speed Data Block 2, Test 1")
 
 if (ssdb2.datalen() != 10):
-    print "Sanity Failure: Standard Speed Data Block 2, Test 2"
+    print("Sanity Failure: Standard Speed Data Block 2, Test 2")
 
 if (ssdb3.pause() != 1200):
-    print "Sanity Failure: Standard Speed Data Block 3, Test 1"
+    print("Sanity Failure: Standard Speed Data Block 3, Test 1")
 
 if (ssdb3.datalen() != 20):
-    print "Sanity Failure: Standard Speed Data Block 3, Test 2"
+    print("Sanity Failure: Standard Speed Data Block 3, Test 2")
 
 if (ssdb4.pause() != 1000):
-    print "Sanity Failure: Standard Speed Data Block 4, Test 1"
+    print("Sanity Failure: Standard Speed Data Block 4, Test 1")
 
 if (ssdb4.datalen() != 10):
-    print "Sanity Failure: Standard Speed Data Block 4, Test 2"
+    print("Sanity Failure: Standard Speed Data Block 4, Test 2")
 
 if (ssdb5.datalen() != 0):
-    print "Sanity Failure: Standard Speed Data Block 5, Test 1"
+    print("Sanity Failure: Standard Speed Data Block 5, Test 1")
 
 if (ssdb5.encapsulate(binary3) != 1):
-    print "Sanity Failure: Standard Speed Data Block 5, Test 2"
+    print("Sanity Failure: Standard Speed Data Block 5, Test 2")
 
 
 ############################################
@@ -217,13 +217,13 @@ st48mb2 = Blk_ST48MB()
 st48mb3 = Blk_ST48MB()
 
 if (st48mb1.id != TZXBLK_ST48MB):
-    print "Sanity Failure: Stop the Tape if in 48k Mode Block 1"
+    print("Sanity Failure: Stop the Tape if in 48k Mode Block 1")
 
 if (st48mb2.id != TZXBLK_ST48MB):
-    print "Sanity Failure: Stop the Tape if in 48k Mode Block 2"
+    print("Sanity Failure: Stop the Tape if in 48k Mode Block 2")
 
 if (st48mb3.id != TZXBLK_ST48MB):
-    print "Sanity Failure: Stop the Tape if in 48k Mode Block 3"
+    print("Sanity Failure: Stop the Tape if in 48k Mode Block 3")
 
 
 ################################
@@ -241,18 +241,18 @@ s = "The quick brown fox jumps over the lazy dog. The quick brown fox jumps over
 tdb4 = Blk_TDB(s)
 
 if (tdb1.description() != "Empty Description"):
-    print "Sanity Failure: Text Description Block 1"
+    print("Sanity Failure: Text Description Block 1")
 
 if (tdb2.description() != "MyString"):
-    print "Sanity Failure: Text Description Block 2"
+    print("Sanity Failure: Text Description Block 2")
 
 if (tdb3.description() != "Another String"):
-    print "Sanity Failure: Text Description Block 3"
+    print("Sanity Failure: Text Description Block 3")
 
 if (tdb4.description() != "The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog" \
                           "The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog" \
                           "The quick brown fox jumps over the lazy dog. THE TEXT SHOULD BE TRUNCATED AT..."):
-    print "Sanity Failure: Text Description Block 4"
+    print("Sanity Failure: Text Description Block 4")
 
 
 ################################
@@ -273,91 +273,91 @@ tsdb3.encapsulate(binary2)
 tsdb4 = Blk_TSDB()
 
 if (tsdb1.pilotpulse() != 2168):
-    print "Sanity Failure: Turbo Speed Data Block 1, Test 1"
+    print("Sanity Failure: Turbo Speed Data Block 1, Test 1")
 
 if (tsdb1.syncpulse1() != 667):
-    print "Sanity Failure: Turbo Speed Data Block 1, Test 2"
+    print("Sanity Failure: Turbo Speed Data Block 1, Test 2")
 
 if (tsdb1.syncpulse2() != 735):
-    print "Sanity Failure: Turbo Speed Data Block 1, Test 3"
+    print("Sanity Failure: Turbo Speed Data Block 1, Test 3")
 
 if (tsdb1.bitpulse0() != 855):
-    print "Sanity Failure: Turbo Speed Data Block 1, Test 4"
+    print("Sanity Failure: Turbo Speed Data Block 1, Test 4")
 
 if (tsdb1.bitpulse1() != 1710):
-    print "Sanity Failure: Turbo Speed Data Block 1, Test 5"
+    print("Sanity Failure: Turbo Speed Data Block 1, Test 5")
 
 if (tsdb1.pilottone() != 8063):
-    print "Sanity Failure: Turbo Speed Data Block 1, Test 6"
+    print("Sanity Failure: Turbo Speed Data Block 1, Test 6")
 
 if (tsdb1.usedbits() != 8):
-    print "Sanity Failure: Turbo Speed Data Block 1, Test 7"
+    print("Sanity Failure: Turbo Speed Data Block 1, Test 7")
 
 if (tsdb1.pause() != 1000):
-    print "Sanity Failure: Turbo Speed Data Block 1, Test 8"
+    print("Sanity Failure: Turbo Speed Data Block 1, Test 8")
 
 if (tsdb1.datalen() != 0):
-    print "Sanity Failure: Turbo Speed Data Block 1, Test 9"
+    print("Sanity Failure: Turbo Speed Data Block 1, Test 9")
 
 if (tsdb2.pilotpulse() != 1000):
-    print "Sanity Failure: Turbo Speed Data Block 2, Test 1"
+    print("Sanity Failure: Turbo Speed Data Block 2, Test 1")
 
 if (tsdb2.syncpulse1() != 2000):
-    print "Sanity Failure: Turbo Speed Data Block 2, Test 2"
+    print("Sanity Failure: Turbo Speed Data Block 2, Test 2")
 
 if (tsdb2.syncpulse2() != 3000):
-    print "Sanity Failure: Turbo Speed Data Block 2, Test 3"
+    print("Sanity Failure: Turbo Speed Data Block 2, Test 3")
 
 if (tsdb2.bitpulse0() != 4000):
-    print "Sanity Failure: Turbo Speed Data Block 2, Test 4"
+    print("Sanity Failure: Turbo Speed Data Block 2, Test 4")
 
 if (tsdb2.bitpulse1() != 5000):
-    print "Sanity Failure: Turbo Speed Data Block 2, Test 5"
+    print("Sanity Failure: Turbo Speed Data Block 2, Test 5")
 
 if (tsdb2.pilottone() != 6000):
-    print "Sanity Failure: Turbo Speed Data Block 2, Test 6"
+    print("Sanity Failure: Turbo Speed Data Block 2, Test 6")
 
 if (tsdb2.usedbits() != 8):
-    print "Sanity Failure: Turbo Speed Data Block 2, Test 7"
+    print("Sanity Failure: Turbo Speed Data Block 2, Test 7")
 
 if (tsdb2.pause() != 7000):
-    print "Sanity Failure: Turbo Speed Data Block 2, Test 8"
+    print("Sanity Failure: Turbo Speed Data Block 2, Test 8")
 
 if (tsdb2.datalen() != 10):
-    print "Sanity Failure: Turbo Speed Data Block 2, Test 9"
+    print("Sanity Failure: Turbo Speed Data Block 2, Test 9")
 
 if (tsdb3.pilotpulse() != 100):
-    print "Sanity Failure: Turbo Speed Data Block 3, Test 1"
+    print("Sanity Failure: Turbo Speed Data Block 3, Test 1")
 
 if (tsdb3.syncpulse1() != 200):
-    print "Sanity Failure: Turbo Speed Data Block 3, Test 2"
+    print("Sanity Failure: Turbo Speed Data Block 3, Test 2")
 
 if (tsdb3.syncpulse2() != 300):
-    print "Sanity Failure: Turbo Speed Data Block 3, Test 3"
+    print("Sanity Failure: Turbo Speed Data Block 3, Test 3")
 
 if (tsdb3.bitpulse0() != 400):
-    print "Sanity Failure: Turbo Speed Data Block 3, Test 4"
+    print("Sanity Failure: Turbo Speed Data Block 3, Test 4")
 
 if (tsdb3.bitpulse1() != 500):
-    print "Sanity Failure: Turbo Speed Data Block 3, Test 5"
+    print("Sanity Failure: Turbo Speed Data Block 3, Test 5")
 
 if (tsdb3.pilottone() != 600):
-    print "Sanity Failure: Turbo Speed Data Block 3, Test 6"
+    print("Sanity Failure: Turbo Speed Data Block 3, Test 6")
 
 if (tsdb3.usedbits() != 5):
-    print "Sanity Failure: Turbo Speed Data Block 3, Test 7"
+    print("Sanity Failure: Turbo Speed Data Block 3, Test 7")
 
 if (tsdb3.pause() != 700):
-    print "Sanity Failure: Turbo Speed Data Block 3, Test 8"
+    print("Sanity Failure: Turbo Speed Data Block 3, Test 8")
 
 if (tsdb3.datalen() != 20):
-    print "Sanity Failure: Turbo Speed Data Block 3, Test 9"
+    print("Sanity Failure: Turbo Speed Data Block 3, Test 9")
 
 if (tsdb4.encapsulate(binary2) != None):
-    print "Sanity Failure: Turbo Speed Data Block 4, Test 1"
+    print("Sanity Failure: Turbo Speed Data Block 4, Test 1")
 
 if (tsdb4.encapsulate(binary4) != 1):
-    print "Sanity Failure: Turbo Speed Data Block 4, Test 2"
+    print("Sanity Failure: Turbo Speed Data Block 4, Test 2")
 
 
 #########################
@@ -374,55 +374,55 @@ pdb3.encapsulate(binary2)
 pdb4 = Blk_PDB()
 
 if (pdb1.bitpulse0() != 855):
-    print "Sanity Failure: Pure Data Block 1, Test 1"
+    print("Sanity Failure: Pure Data Block 1, Test 1")
 
 if (pdb1.bitpulse1() != 1710):
-    print "Sanity Failure: Pure Data Block 1, Test 2"
+    print("Sanity Failure: Pure Data Block 1, Test 2")
 
 if (pdb1.usedbits() != 8):
-    print "Sanity Failure: Pure Data Block 1, Test 3"
+    print("Sanity Failure: Pure Data Block 1, Test 3")
 
 if (pdb1.pause() != 1000):
-    print "Sanity Failure: Pure Data Block 1, Test 4"
+    print("Sanity Failure: Pure Data Block 1, Test 4")
 
 if (pdb1.datalen() != 0):
-    print "Sanity Failure: Pure Data Block 1, Test 5"
+    print("Sanity Failure: Pure Data Block 1, Test 5")
 
 if (pdb2.bitpulse0() != 4000):
-    print "Sanity Failure: Pure Data Block 2, Test 1"
+    print("Sanity Failure: Pure Data Block 2, Test 1")
 
 if (pdb2.bitpulse1() != 5000):
-    print "Sanity Failure: Pure Data Block 2, Test 2"
+    print("Sanity Failure: Pure Data Block 2, Test 2")
 
 if (pdb2.usedbits() != 8):
-    print "Sanity Failure: Pure Data Block 2, Test 3"
+    print("Sanity Failure: Pure Data Block 2, Test 3")
 
 if (pdb2.pause() != 7000):
-    print "Sanity Failure: Pure Data Block 2, Test 4"
+    print("Sanity Failure: Pure Data Block 2, Test 4")
 
 if (pdb2.datalen() != 10):
-    print "Sanity Failure: Pure Data Block 2, Test 5"
+    print("Sanity Failure: Pure Data Block 2, Test 5")
 
 if (pdb3.bitpulse0() != 400):
-    print "Sanity Failure: Pure Data Block 3, Test 1"
+    print("Sanity Failure: Pure Data Block 3, Test 1")
 
 if (pdb3.bitpulse1() != 500):
-    print "Sanity Failure: Pure Data Block 3, Test 2"
+    print("Sanity Failure: Pure Data Block 3, Test 2")
 
 if (pdb3.usedbits() != 5):
-    print "Sanity Failure: Pure Data Block 3, Test 3"
+    print("Sanity Failure: Pure Data Block 3, Test 3")
 
 if (pdb3.pause() != 700):
-    print "Sanity Failure: Pure Data Block 3, Test 4"
+    print("Sanity Failure: Pure Data Block 3, Test 4")
 
 if (pdb3.datalen() != 20):
-    print "Sanity Failure: Pure Data Block 3, Test 5"
+    print("Sanity Failure: Pure Data Block 3, Test 5")
 
 if (pdb4.encapsulate(binary2) != None):
-    print "Sanity Failure: Pure Data Block 4, Test 1"
+    print("Sanity Failure: Pure Data Block 4, Test 1")
 
 if (pdb4.encapsulate(binary4) != 1):
-    print "Sanity Failure: Pure Data Block 4, Test 2"
+    print("Sanity Failure: Pure Data Block 4, Test 2")
 
 
 ################################
@@ -437,40 +437,40 @@ drb3.usedbits(5)
 drb3.encapsulate(binary4)
 
 if (drb1.tstatespersample() != 0):
-    print "Sanity Failure: Direct Recording Block 1, Test 1"
+    print("Sanity Failure: Direct Recording Block 1, Test 1")
 
 if (drb1.pause() != 1000):
-    print "Sanity Failure: Direct Recording Block 1, Test 2"
+    print("Sanity Failure: Direct Recording Block 1, Test 2")
 
 if (drb1.usedbits() != 8):
-    print "Sanity Failure: Direct Recording Block 1, Test 3"
+    print("Sanity Failure: Direct Recording Block 1, Test 3")
 
 if (drb1.datalen() != 0):
-    print "Sanity Failure: Direct Recording Block 1, Test 4"
+    print("Sanity Failure: Direct Recording Block 1, Test 4")
 
 if (drb2.tstatespersample() != 4000):
-    print "Sanity Failure: Direct Recording Block 2, Test 1"
+    print("Sanity Failure: Direct Recording Block 2, Test 1")
 
 if (drb2.pause() != 5000):
-    print "Sanity Failure: Direct Recording Block 2, Test 2"
+    print("Sanity Failure: Direct Recording Block 2, Test 2")
 
 if (drb2.usedbits() != 7):
-    print "Sanity Failure: Direct Recording Block 2, Test 3"
+    print("Sanity Failure: Direct Recording Block 2, Test 3")
 
 if (drb2.datalen() != 10):
-    print "Sanity Failure: Direct Recording Block 2, Test 4"
+    print("Sanity Failure: Direct Recording Block 2, Test 4")
 
 if (drb3.tstatespersample() != 400):
-    print "Sanity Failure: Direct Recording Block 3, Test 1"
+    print("Sanity Failure: Direct Recording Block 3, Test 1")
 
 if (drb3.pause() != 500):
-    print "Sanity Failure: Direct Recording Block 3, Test 2"
+    print("Sanity Failure: Direct Recording Block 3, Test 2")
 
 if (drb3.usedbits() != 5):
-    print "Sanity Failure: Direct Recording Block 3, Test 3"
+    print("Sanity Failure: Direct Recording Block 3, Test 3")
 
 if (drb3.datalen() != 0):
-    print "Sanity Failure: Direct Recording Block 3, Test 4"
+    print("Sanity Failure: Direct Recording Block 3, Test 4")
 
 
 ###########################
@@ -488,18 +488,18 @@ s = "The quick brown fox jumps over the lazy dog. The quick brown fox jumps over
 gsb4 = Blk_GSB(s)
 
 if (gsb1.groupname() != "Empty Group Name"):
-    print "Sanity Failure: Group Start Block 1"
+    print("Sanity Failure: Group Start Block 1")
 
 if (gsb2.groupname() != "MyString"):
-    print "Sanity Failure: Group Start Block 2"
+    print("Sanity Failure: Group Start Block 2")
 
 if (gsb3.groupname() != "Another String"):
-    print "Sanity Failure: Group Start Block 3"
+    print("Sanity Failure: Group Start Block 3")
 
 if (gsb4.groupname() != "The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog" \
                           "The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog" \
                           "The quick brown fox jumps over the lazy dog. THE TEXT SHOULD BE TRUNCATED AT..."):
-    print "Sanity Failure: Group Start Block 4"
+    print("Sanity Failure: Group Start Block 4")
 
 
 #############################
@@ -514,13 +514,13 @@ for z in range(255):
     htb3.add_hardware(HTYPE_MODEM,1,HINFO_RUNS_SFX)
 
 if (htb1.hardwarenum() != 0):
-    print "Sanity Failure: Hardware Type Block 1"
+    print("Sanity Failure: Hardware Type Block 1")
 
 if (htb2.hardwarenum() != 1):
-    print "Sanity Failure: Hardware Type Block 2"
+    print("Sanity Failure: Hardware Type Block 2")
 
 if (htb3.add_hardware(HTYPE_SOUND,8,HINFO_NORUN) != 1):
-    print "Sanity Failure: Hardware Type Block 3"
+    print("Sanity Failure: Hardware Type Block 3")
 
 
 #######################
@@ -539,27 +539,27 @@ s = "The quick brown fox jumps over the lazy dog. The quick brown fox jumps over
 mb4 = Blk_MB(s, 20)
 
 if (mb1.message() != "Empty Message"):
-    print "Sanity Failure: Message Block 1, Test 1"
+    print("Sanity Failure: Message Block 1, Test 1")
 
 if (mb1.time() != 0):
-    print "Sanity Failure: Message Block 1, Test 2"
+    print("Sanity Failure: Message Block 1, Test 2")
 
 if (mb2.message() != "MyString"):
-    print "Sanity Failure: Message Block 2, Test 1"
+    print("Sanity Failure: Message Block 2, Test 1")
 
 if (mb2.time() != 75):
-    print "Sanity Failure: Message Block 2, Test 2"
+    print("Sanity Failure: Message Block 2, Test 2")
 
 if (mb3.message() != "Another String"):
-    print "Sanity Failure: Message Block 3, Test 1"
+    print("Sanity Failure: Message Block 3, Test 1")
 
 if (mb3.time() != 100):
-    print "Sanity Failure: Message Block 3, Test 2"
+    print("Sanity Failure: Message Block 3, Test 2")
 
 if (mb4.message() != "The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog" \
                           "The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog" \
                           "The quick brown fox jumps over the lazy dog. THE TEXT SHOULD BE TRUNCATED AT..."):
-    print "Sanity Failure: Message Block 4, Test 1"
+    print("Sanity Failure: Message Block 4, Test 1")
 
 
 ################################
@@ -571,13 +571,13 @@ sslb3 = Blk_SSLB()
 sslb3.signal(1)
 
 if (sslb1.signal() != 0):
-    print "Sanity Failure: Set Signal Level Block 1, Test 1"
+    print("Sanity Failure: Set Signal Level Block 1, Test 1")
 
 if (sslb2.signal() != 1):
-    print "Sanity Failure: Set Signal Level Block 2, Test 1"
+    print("Sanity Failure: Set Signal Level Block 2, Test 1")
 
 if (sslb3.signal() != 1):
-    print "Sanity Failure: Set Signal Level Block 3, Test 1"
+    print("Sanity Failure: Set Signal Level Block 3, Test 1")
 
 
 #############################
@@ -596,19 +596,19 @@ for q in range(255):
     csb4.add_call(400)
 
 if (csb1.callnum() != 0):
-    print "Sanity Failure: Call Sequence Block 1"
+    print("Sanity Failure: Call Sequence Block 1")
 
 if (csb2.callnum() != 1):
-    print "Sanity Failure: Call Sequence Block 2"
+    print("Sanity Failure: Call Sequence Block 2")
 
 if (csb3.callnum() != 2):
-    print "Sanity Failure: Call Sequence Block 3"
+    print("Sanity Failure: Call Sequence Block 3")
 
 if (csb4.add_call(400) != 1):
-    print "Sanity Failure: Call Sequence Block 4 on Error Check"
+    print("Sanity Failure: Call Sequence Block 4 on Error Check")
 
 if (csb4.callnum() != 255):
-    print "Sanity Failure: Call Sequence Block 4"
+    print("Sanity Failure: Call Sequence Block 4")
 
 
 ####################################
@@ -619,13 +619,13 @@ rfsb2 = Blk_RFSB()
 rfsb3 = Blk_RFSB()
 
 if (rfsb1.id != TZXBLK_RFSB):
-    print "Sanity Failure: Return From Sequence Block 1"
+    print("Sanity Failure: Return From Sequence Block 1")
 
 if (rfsb2.id != TZXBLK_RFSB):
-    print "Sanity Failure: Return From Sequence Block 2"
+    print("Sanity Failure: Return From Sequence Block 2")
 
 if (rfsb3.id != TZXBLK_RFSB):
-    print "Sanity Failure: Return From Sequence Block 3"
+    print("Sanity Failure: Return From Sequence Block 3")
 
 
 ############################
@@ -646,16 +646,16 @@ for q in range(255):
     aib3.add_info(AINFO_COMMENT, "Comment")
 
 if (aib1.infonum() != 1):
-    print "Sanity Failure: Archive Info Block 1"
+    print("Sanity Failure: Archive Info Block 1")
 
 if (aib2.infonum() != 5):
-    print "Sanity Failure: Archive Info Block 2"
+    print("Sanity Failure: Archive Info Block 2")
 
 if (aib3.add_info(AINFO_COMMENT, "Comment") != 1):
-    print "Sanity Failure: Archive Info Block 3, Test 1"
+    print("Sanity Failure: Archive Info Block 3, Test 1")
 
 if (aib3.infonum() != 255):
-    print "Sanity Failure: Archive Info Block 3, Test 2"
+    print("Sanity Failure: Archive Info Block 3, Test 2")
 
 
 ###########################
@@ -669,22 +669,22 @@ cib3.setcid("Hello")
 cib3.encapsulate("XXXXX")
 
 if (cib1.setcid() != "The CIB Id"):
-    print "Sanity Failure: Custom Info Block 1, Test 1"
+    print("Sanity Failure: Custom Info Block 1, Test 1")
 
 if (cib1.datalen() != 15):
-    print "Sanity Failure: Custom Info Block 1, Test 2"
+    print("Sanity Failure: Custom Info Block 1, Test 2")
 
 if (cib2.setcid() != "No ID     "):
-    print "Sanity Failure: Custom Info Block 2, Test 1"
+    print("Sanity Failure: Custom Info Block 2, Test 1")
 
 if (cib2.datalen() != 0):
-    print "Sanity Failure: Custom Info Block 2, Test 2"
+    print("Sanity Failure: Custom Info Block 2, Test 2")
 
 if (cib3.setcid() != "Hello     "):
-    print "Sanity Failure: Custom Info Block 3, Test 1"
+    print("Sanity Failure: Custom Info Block 3, Test 1")
 
 if (cib3.datalen() != 5):
-    print "Sanity Failure: Custom Info Block 3, Test 2"
+    print("Sanity Failure: Custom Info Block 3, Test 2")
 
 
 ######################
@@ -702,16 +702,16 @@ for q in range(255):
     selb3.add_select(q, "Comment")
 
 if (selb1.selectnum() != 1):
-    print "Sanity Failure: Select Block 1"
+    print("Sanity Failure: Select Block 1")
 
 if (selb2.selectnum() != 2):
-    print "Sanity Failure: Select Block 2"
+    print("Sanity Failure: Select Block 2")
 
 if (selb3.add_select(10, "Final Map") != 1):
-    print "Sanity Failure: Select Block 3, Test 1"
+    print("Sanity Failure: Select Block 3, Test 1")
 
 if (selb3.selectnum() != 255):
-    print "Sanity Failure: Select Block 3, Test 2"
+    print("Sanity Failure: Select Block 3, Test 2")
 
 
 #############################
@@ -727,46 +727,46 @@ cswrb3.storedpulses(500)
 cswrb3.encapsulate(binary2)
 
 if (cswrb1.pause() != 1000):
-    print "Sanity Failure: CSW Recording Block 1, Test 1"
+    print("Sanity Failure: CSW Recording Block 1, Test 1")
 
 if (cswrb1.samplerate() != 22050):
-    print "Sanity Failure: CSW Recording Block 1, Test 2"
+    print("Sanity Failure: CSW Recording Block 1, Test 2")
 
 if (cswrb1.compression() != CSW_RLE):
-    print "Sanity Failure: CSW Recording Block 1, Test 3"
+    print("Sanity Failure: CSW Recording Block 1, Test 3")
 
 if (cswrb1.storedpulses() != 0):
-    print "Sanity Failure: CSW Recording Block 1, Test 4"
+    print("Sanity Failure: CSW Recording Block 1, Test 4")
 
 if (cswrb1.datalen() != 0):
-    print "Sanity Failure: CSW Recording Block 1, Test 5"
+    print("Sanity Failure: CSW Recording Block 1, Test 5")
 
 if (cswrb2.pause() != 100):
-    print "Sanity Failure: CSW Recording Block 2, Test 1"
+    print("Sanity Failure: CSW Recording Block 2, Test 1")
 
 if (cswrb2.samplerate() != 11000):
-    print "Sanity Failure: CSW Recording Block 2, Test 2"
+    print("Sanity Failure: CSW Recording Block 2, Test 2")
 
 if (cswrb2.compression() != CSW_ZRLE):
-    print "Sanity Failure: CSW Recording Block 2, Test 3"
+    print("Sanity Failure: CSW Recording Block 2, Test 3")
 
 if (cswrb2.storedpulses() != 50):
-    print "Sanity Failure: CSW Recording Block 2, Test 4"
+    print("Sanity Failure: CSW Recording Block 2, Test 4")
 
 if (cswrb2.datalen() != 10):
-    print "Sanity Failure: CSW Recording Block 2, Test 5"
+    print("Sanity Failure: CSW Recording Block 2, Test 5")
 
 if (cswrb3.pause() != 10):
-    print "Sanity Failure: CSW Recording Block 3, Test 1"
+    print("Sanity Failure: CSW Recording Block 3, Test 1")
 
 if (cswrb3.samplerate() != 96000):
-    print "Sanity Failure: CSW Recording Block 3, Test 2"
+    print("Sanity Failure: CSW Recording Block 3, Test 2")
 
 if (cswrb3.compression() != CSW_RLE):
-    print "Sanity Failure: CSW Recording Block 3, Test 3"
+    print("Sanity Failure: CSW Recording Block 3, Test 3")
 
 if (cswrb3.storedpulses() != 500):
-    print "Sanity Failure: CSW Recording Block 3, Test 4"
+    print("Sanity Failure: CSW Recording Block 3, Test 4")
 
 if (cswrb3.datalen() != 20):
-    print "Sanity Failure: CSW Recording Block 3, Test 5"
+    print("Sanity Failure: CSW Recording Block 3, Test 5")
