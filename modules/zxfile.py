@@ -41,7 +41,9 @@ class ZX_FileHdr:
 
     A class which defines the layout of a spectrum file header.
     """
-    def __init__(self, ftype=SPEC_FILE_PROG, fname='EMPTY NAME', dblen=0, par1=0, par2=0):
+
+    def __init__(self, ftype: int = SPEC_FILE_PROG, fname: str = 'EMPTY NAME', dblen: int = 0, par1: int = 0,
+                 par2: int = 0):
         self.__header = [bytes() for _ in range(5)]
         self.__flag = SPEC_FLAG_HEAD
         self.__cksum = 0
@@ -51,7 +53,7 @@ class ZX_FileHdr:
         self.param1(par1)
         self.param2(par2)
 
-    def filetype(self, ftype=None):
+    def filetype(self, ftype: int = None):
         """
         Sets and returns the spectrum file type.
 
@@ -68,7 +70,7 @@ class ZX_FileHdr:
             self.__header[0] = pack('<B', ftype)
         return unpack('<B', self.__header[0])[0]
 
-    def setdatalen(self, dlen=None):
+    def setdatalen(self, dlen: int = None):
         """
         Sets and returns the data block length.
 
@@ -83,7 +85,7 @@ class ZX_FileHdr:
         # Unpack always returns a tuple, hence the [0]
         return unpack('<H', self.__header[2])[0]
 
-    def filename(self, fname=None):
+    def filename(self, fname: str = None):
         """
         Sets and returns the spectrum filename.
 
@@ -99,7 +101,7 @@ class ZX_FileHdr:
             self.__header[1] = fname.encode()
         return self.__header[1]
 
-    def param1(self, par1=None):
+    def param1(self, par1: int = None):
         """
         Sets and returns the first file parameter.
 
@@ -118,7 +120,7 @@ class ZX_FileHdr:
             self.__header[3] = pack('<H', par1)
         return unpack('<H', self.__header[3])[0]
 
-    def param2(self, par2=None):
+    def param2(self, par2: int = None):
         """
         Sets and returns the second file parameter.
 
@@ -163,14 +165,14 @@ class ZX_FileData:
 
     A class which defines spectrum file data layout.
     """
-    def __init__(self, data=None):
+    def __init__(self, data: bytes = None):
         self.__flag = SPEC_FLAG_DATA
         self.__data = bytes()
         self.__cksum = 0
         if data is not None:
             self.encapsulate(data)
 
-    def encapsulate(self, data):
+    def encapsulate(self, data: bytes):
         """
         Encapsulates a block of data into a spectrum data section.
 
