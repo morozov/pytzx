@@ -3,7 +3,7 @@
 # Performs some non-exhaustive tests on tzx.py
 # All tests succeed if no output is generated.
 #
-from modules.tzx import *
+from pytzx.tzx import *
 
 # Sanity Check
 binary = "\x00" * 10

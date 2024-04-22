@@ -15,8 +15,8 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-from modules.tzx import *
-from modules.zxfile import *
+from pytzx.tzx import *
+from pytzx.zxfile import *
 
 ################################################################################
 # EXAMPLE 1 - Pure python script that generates a TZX file to load a screen.   #

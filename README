@@ -27,10 +27,10 @@ import zxfile
 help(tzx)
 help(zxfile)
 
-example1:
+examples/01-standard-loader:
 Creates a spectrum loading screen of the python logo.
 
-example2:
+examples/02-turbo-loader:
 Creates a turbo-loaded loading screen of the python logo.
 
 When creating TZX files, it may be useful to consult the TZX file specification:
